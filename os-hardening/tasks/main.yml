@@ -1,0 +1,22 @@
+---
+
+  - include: prelim.yml
+#    tags: prelim
+
+  - include: section1.yml
+#    tags: section1
+
+  - include: section2.yml
+#    tags: section2
+
+  - include: section3.yml
+#    tags: section3
+
+  - include: section4.yml
+#    tags: section4
+
+  - include: section5.yml
+#    tags: section5
+
+  - include: section6.yml
+#    tags: section6

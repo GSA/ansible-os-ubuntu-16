@@ -1,0 +1,7 @@
+- name: Testing
+  hosts: all
+  #playbook requires become to run cmd as root
+  become: yes
+
+  roles:
+    - os-hardening

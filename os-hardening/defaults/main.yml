@@ -1,0 +1,132 @@
+---
+# defaults file for Ubuntu14
+ubu16gsa_section1: true
+ubu16gsa_section2: true
+ubu16gsa_section3: true
+ubu16gsa_section4: true
+ubu16gsa_section5: true
+ubu16gsa_section6: true
+
+# Service configuration booleans set true to keep service/packages
+ubu16gsa_avahi_server: false
+ubu16gsa_cups_server: false
+ubu16gsa_dhcp_server: false
+ubu16gsa_ldap_server: false
+ubu16gsa_telnet_server: false
+ubu16gsa_nfs_server: false
+ubu16gsa_rpc_server: false
+ubu16gsa_ntalk_server: false
+ubu16gsa_rsyncd_server: false
+ubu16gsa_tftp_server: false
+ubu16gsa_rsh_server: false
+ubu16gsa_nis_server: false
+ubu16gsa_snmp_server: false
+ubu16gsa_squid_server: false
+ubu16gsa_smb_server: false
+ubu16gsa_dovecot_server: false
+ubu16gsa_httpd_server: false
+ubu16gsa_vsftpd_server: false
+ubu16gsa_named_server: false
+ubu16gsa_nfs_rpc_server: false
+ubu16gsa_is_mail_server: false
+ubu16gsa_bind: false
+ubu16gsa_vsftpd: false
+ubu16gsa_httpd: false
+ubu16gsa_dovecot: false
+ubu16gsa_samba: false
+ubu16gsa_squid: false
+ubu16gsa_net_snmp: false
+ubu16gsa_allow_autofs: false
+ubu16gsa_openldap_clients_required: false
+ubu16gsa_telnet_required: false
+ubu16gsa_talk_required: false
+ubu16gsa_rsh_required: false
+ubu16gsa_ypbind_required: false
+
+#1.2.5 | Disable the rhnsd Daemon
+ubu16gsa_rhnsd_required: false
+
+# 1.3.1 Install and configure AIDE. This is disabled by default as OSSEC is widely in use
+ubu16gsa_config_aide: false
+# AIDE cron settings
+ubu16gsa_aide_cron:
+  cron_user: root
+  cron_file: /etc/crontab
+  aide_job: '/usr/sbin/aide --check'
+  aide_minute: 0
+  aide_hour: 5
+  aide_day: '*'
+  aide_month: '*'
+  aide_weekday: '*'
+
+# 1.4.2 Bootloader password
+ubu16gsa_bootloader_password: random
+ubu16gsa_set_boot_pass: false
+
+# 1.6.2 Configure AppArmor
+ubu16gsa_config_apparmor: true
+
+# 1.6.3 Configure Selinux
+ubu16gsa_config_selinux: fasle
+ubu16gsa_selinux_disable: true
+ubu16gsa_selinux_pol: targeted
+
+# 2.1.7 xinetd required
+ubu16gsa_xinetd_required: false
+
+# 2.2.1 Time Synchronization
+ubu16gsa_time_usentp: false
+ubu16gsa_time_usechrony: True
+
+ubu16gsa_time_synchronization_servers:
+    - 0.pool.ntp.org
+    - 1.pool.ntp.org
+    - 2.pool.ntp.org
+    - 3.pool.ntp.org
+
+# 2.2.2 Set to 'true' if X Windows is needed in your environment
+ubu16gsa_xwindows_required: no
+
+# 3.1.1 and 3.1.2 Configuring IP forwarding
+ubu16gsa_is_router: false
+
+#3.3.1 | Configuring IPv6
+ubu16gsa_ipv6_disable: true
+ubu16gsa_ipv6_configured: true
+
+# 3.4.2 | PATCH | Ensure /etc/hosts.allow is configured
+ubu16gsa_host_allow:
+    - "10.0.0.0/255.0.0.0"
+    - "172.16.0.0/255.240.0.0"
+    - "192.168.0.0/255.255.0.0"
+
+# 3.6 Firewall Configurations
+#ubu16gsa_firewall: firewalld
+#ubu16gsa_firewall: iptables_plus !!!NOTE!!! This could break your network connections. Test before implementing.
+ubu16gsa_firewall: iptables
+ubu16gsa_firewall_status: true
+
+# 3.7 Wireless configuration
+ubu16gsa_wireless: false
+
+# 4 Logging and Auditing
+ubu16gsa_auditd_config: true
+ubu16gsa_config_logging: true
+ubu16gsa_logging: rsyslog
+#ubu16gsa_logging: rsyslog-ng
+
+# 5.2.9 Permit empty passwords. This is turned off by defualt due to it breaking a standard EC2 ssh connection access with the default ec2-user account.
+ubu16gsa_ssh_required: false
+
+# 5.4.1.4 says that users who are inactive for over 30 days must have their
+# accounts disabled. This could cause issues in some environments.
+# Options:
+#   true: disable accounts inactive > 30 days per GSA requirements
+#   false: don't adjust inactive account settings
+lock_inactive: true
+
+# 5.6 Configure wheel group members who can access the su command.
+# This configures the /etc/group wheel configurations. This is turned off by default". Chnage to "true" to enable and add the desired names
+# to the wheel_group_members.
+ubu16gsa_wheel: false
+wheel_group_members: "root,ec2-user"

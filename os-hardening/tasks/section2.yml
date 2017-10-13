@@ -1,0 +1,225 @@
+- name: "2.1.1 | Ensure chargen services are not enabled | chargen-dgram"
+  stat:
+      path: /etc/xinetd.d/chargen-dgram
+  register: chargen_dgram_service
+  tags:
+      - id_2.1.1
+
+- name: "2.1.1 | Ensure chargen services are not enabled | chargen-dgram"
+  command: chkconfig chargen-dgram off
+  when: chargen_dgram_service.stat.exists
+  tags:
+      - id_2.1.1
+
+- name: "2.1.1 | Ensure chargen services are not enabled | chargen-stream"
+  stat:
+      path: /etc/xinetd.d/chargen-stream
+  register: chargen_stream_service
+  tags:
+      - id_2.1.1
+
+- name: "2.1.1 | Ensure chargen services are not enabled | chargen-stream"
+  command: chkconfig chargen-stream off
+  when: chargen_stream_service.stat.exists
+  tags:
+      - id_2.1.1
+
+- name: "2.1.2 | Ensure daytime services are not enabled | daytime-dgram"
+  stat:
+      path: /etc/xinetd.d/daytime-dgram
+  register: daytime_dgram_service
+  tags:
+      - id_2.1.2
+
+- name: "2.1.2 | Ensure daytime services are not enabled | daytime-dgram"
+  command: chkconfig daytime-dgram off
+  when: daytime_dgram_service.stat.exists
+  tags:
+      - id_2.1.2
+
+- name: "2.1.2 | Ensure daytime services are not enabled | daytime-stream"
+  stat:
+      path: /etc/xinetd.d/daytime-stream
+  register: daytime_stream_service
+  tags:
+      - id_2.1.2
+
+- name: "2.1.2 | Ensure daytime services are not enabled | daytime-stream"
+  command: chkconfig daytime-stream off
+  when: daytime_stream_service.stat.exists
+  tags:
+      - id_2.1.2
+
+- name: "2.1.3 | Ensure discard services are not enabled | discard-dgram"
+  stat:
+      path: /etc/xinetd.d/discard-dgram
+  register: discard_dgram_service
+  tags:
+      - id_2.1.3
+
+- name: "2.1.3 | Ensure discard services are not enabled | discard-dgram"
+  command: chkconfig discard-dgram off
+  when: discard_dgram_service.stat.exists
+  tags:
+      - id_2.1.3
+
+- name: "2.1.3 | Ensure discard services are not enabled | discard-stream"
+  stat:
+      path: /etc/xinetd.d/discard-stream
+  register: discard_stream_service
+  tags:
+      - id_2.1.3
+
+- name: "2.1.3 | Ensure discard services are not enabled | discard-stream"
+  command: chkconfig discard-stream off
+  when: discard_stream_service.stat.exists
+  tags:
+      - id_2.1.3
+
+- name: "2.1.4 | Ensure echo services are not enabled | echo-dgram"
+  stat:
+      path: /etc/xinetd.d/echo-dgram
+  register: echo_dgram_service
+  tags:
+      - id_2.1.4
+
+- name: "2.1.4 | Ensure echo services are not enabled | echo-dgram"
+  command: chkconfig echo-dgram off
+  when: echo_dgram_service.stat.exists
+  tags:
+      - id_2.1.4
+
+- name: "2.1.4 | Ensure echo services are not enabled | echo-stream"
+  stat:
+      path: /etc/xinetd.d/echo-stream
+  register: echo_stream_service
+  tags:
+      - id_2.1.4
+
+- name: "2.1.4 | Ensure echo services are not enabled | echo-stream"
+  command: chkconfig echo-stream off
+  when: echo_stream_service.stat.exists
+  tags:
+      - id_2.1.4
+
+- name: "2.1.5 | Ensure time services are not enabled | time-dgram"
+  stat:
+      path: /etc/xinetd.d/time-dgram
+  register: time_dgram_service
+  tags:
+      - id_2.1.5
+
+- name: "2.1.5 | Ensure time services are not enabled | time-dgram"
+  command: chkconfig time-dgram off
+  when: time_dgram_service.stat.exists
+  tags:
+      - id_2.1.5
+
+- name: "2.1.5 | Ensure time services are not enabled | time-stream"
+  stat:
+      path: /etc/xinetd.d/time-stream
+  register: time_stream_service
+  tags:
+      - id_2.1.5
+
+- name: "2.1.5 | Ensure time services are not enabled | time-stream"
+  command: chkconfig time-stream off
+  when: time_stream_service.stat.exists
+  tags:
+      - id_2.1.5
+
+- name: "2.1.6 | Ensure tftp server is not enabled"
+  stat:
+      path: /etc/xinetd.d/tftp
+  register: tftp_service
+  tags:
+      - id_2.1.6
+
+- name: "2.1.6 | Ensure tftp server is not enabled"
+  command: chkconfig tftp off
+  when: tftp_service.stat.exists and ubu16gsa_tftp_server == false
+  tags:
+      - id_2.1.6
+
+- name: "2.1.7 | Ensure xinetd is not enabled"
+  service:
+      name: xinetd
+      state: stopped
+      enabled: no
+  when:
+      - xinetd_service_status.stdout == "loaded" and not ubu16gsa_xinetd_required
+  tags:
+      - id_2.1.7
+
+- name: "2.2.2 | Ensure X Window System in not installed"
+  apt:
+      name: xorg-x11-server-common.x86_64
+      state: absent
+  tags:
+      - id_2.2.2
+
+- name: 2.2.15 Configure Mail Transfer Agent for Local-Only Mode
+  stat: path=/etc/postfix/main.cf
+  register: postfix_main_cf
+  tags:
+    - id_2.2.15
+
+- name: 2.2.15 | Configure Mail Transfer Agent for Local-Only Mode (Scored)
+  lineinfile: >
+      dest=/etc/postfix/main.cf
+      regexp='^inet_interfaces ='
+      line='inet_interfaces = localhost'
+      state=present
+  when: postfix_main_cf.stat.exists == True
+  tags:
+    - id_2.2.15
+
+- name: 2.2.15 | Configure Mail Transfer Agent for Local-Only Mode (Scored)
+  lineinfile: >
+      dest=/etc/postfix/main.cf
+      regexp='^inet_protocols ='
+      line='inet_protocols = ipv4'
+      state=present
+  when: postfix_main_cf.stat.exists == True
+  tags:
+    - id_2.2.15
+
+- name: 2.2.16 | Ensure rsync service is not enabled
+  stat: path=/etc/default/rsync
+  register: default_rsync
+  tags:
+    - id_2.2.16
+
+- name: 2.2.16 | Ensure rsync service is not enabled
+  lineinfile: >
+      dest='/etc/default/rsync'
+      regexp='^RSYNC_ENABLE'
+      line='RSYNC_ENABLE=false'
+  when: default_rsync.stat.exists == True
+  tags:
+    - id_2.2.16
+
+- name: "2.2.17 | Ensure NIS Server is not enabled"
+  service:
+      name: ypserv
+      state: stopped
+      enabled: no
+  failed_when: False
+  tags:
+      - id_2.2.17
+
+- name: 2.3.1-2.3.5 | Ensure NIS, RSH, Talk, Telnet, and Ldap are not installed
+  apt: >
+      name={{ item }}
+      state=absent
+      purge=yes
+  with_items:
+    - nis
+    - ypbind
+    - rsh
+    - talk
+    - telnet
+    - ldap-utils
+    - openldap-clients
+  tags:
+    - id_2.3.1-2.3.5
