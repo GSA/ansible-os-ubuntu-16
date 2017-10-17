@@ -158,11 +158,13 @@
       - id_3.3.2
 
 - name: "3.3.3 | Ensure IPv6 is disabled"
-  lineinfile:
-      dest: /etc/modprobe.d/CIS.conf
-      line: "options ipv6 disable=1"
-      state: present
-  when: ubu16gsa_ipv6_configured == true
+  lineinfile: >
+      dest=/etc/default/grub
+      regexp='GRUB_CMDLINE_LINUX="'
+      line='GRUB_CMDLINE_LINUX="ipv6.disable=1'
+      state=present
+      create=yes
+  when: ubu14gsa_ipv6_disable == true
   tags:
       - id_3.3.3
 
