@@ -130,11 +130,3 @@
   when: ubu16gsa_logging == "syslog-ng" and ubu16gsa_config_logging == true
   tags:
       - id_4.2.3
-
-- name: "4.2.4 | Ensure permissions on all logfiles are configured"
-  file:
-    path: /var/log
-    mode: 0740
-    recurse: yes
-  tags:
-      - id_4.2.4
