@@ -9,7 +9,7 @@ This role **will make changes to the system** that could break things. This is n
 
 ## IMPORTANT INSTALL STEP
 
-This code is based on the GSA Ubuntu 16 v1.0 and the [CIS Ubuntu 16 Benchmark v2.0.0 ](https://community.cisecurity.org/collab/public/index.php).
+This code is based on the GSA Ubuntu 16 v1.0 and the [CIS Ubuntu 16 Benchmark v2.0.0 ](https://www.cisecurity.org/cis-benchmarks/).
 
 Requirements
 ------------
