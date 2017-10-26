@@ -255,6 +255,7 @@
       line: '{{ item.key }} = {{ item.value }}'
   with_items:
       - { key: 'minlen',  value: '16' }
+      - { key: 'retry',  value: '3' }
   tags:
       - id_5.3.1
 
@@ -270,7 +271,7 @@
 - name: "5.3.2-5.3.4 | Ensure lockout for failed password attempts is configured; password-auth"
   template:
     src: common-password
-    dest: /etc/pam.d/password-auth
+    dest: /etc/pam.d/common-password
   tags:
       - id_5.3.2
       - id_5.3.3
