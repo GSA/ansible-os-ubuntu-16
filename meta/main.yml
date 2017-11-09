@@ -1,7 +1,9 @@
 galaxy_info:
   author: "GSA and ISE"
   description: "Ansible role to apply Ubuntu 16 GSA Baseline"
-  min_ansible_version: 2.2
+  company: GSA
+  license: MIT
+  min_ansible_version: 2.4
 
   platforms:
   - name: Ubuntu

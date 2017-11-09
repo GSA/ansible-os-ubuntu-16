@@ -1,22 +1,21 @@
 ---
 
   - include_tasks: prelim.yml
-#    tags: prelim
 
   - include_tasks: section1.yml
-#    tags: section1
+    when: ubu16gsa_section1
 
   - include_tasks: section2.yml
-#    tags: section2
+    when: ubu16gsa_section1
 
   - include_tasks: section3.yml
-#    tags: section3
+    when: ubu16gsa_section1
 
   - include_tasks: section4.yml
-#    tags: section4
+    when: ubu16gsa_section1
 
   - include_tasks: section5.yml
-#    tags: section5
+    when: ubu16gsa_section1
 
   - include_tasks: section6.yml
-#    tags: section6
+    when: ubu16gsa_section1
