@@ -31,7 +31,7 @@
       line='GRUB_CMDLINE_LINUX="audit=1"'
       state=present
       create=yes
-  when: ubu14gsa_auditd_config == true
+  when: ubu16gsa_auditd_config == true
   tags:
       - id_4.1.3
 
