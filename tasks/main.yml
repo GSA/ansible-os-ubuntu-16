@@ -1,21 +1,28 @@
 ---
 
   - include_tasks: prelim.yml
+    become: yes
 
   - include_tasks: section1.yml
+    become: yes
     when: ubu16gsa_section1
 
   - include_tasks: section2.yml
+    become: yes
     when: ubu16gsa_section1
 
   - include_tasks: section3.yml
+    become: yes
     when: ubu16gsa_section1
 
   - include_tasks: section4.yml
+    become: yes
     when: ubu16gsa_section1
 
   - include_tasks: section5.yml
+    become: yes
     when: ubu16gsa_section1
 
   - include_tasks: section6.yml
+    become: yes
     when: ubu16gsa_section1
