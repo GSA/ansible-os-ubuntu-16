@@ -20,8 +20,7 @@ There are many role variables defined in defaults/main.yml.
 
 By default, many of the variables are turned off. Please review and adjust to meet your organizational requirements.
 
-Note, a subset of controls were removed due to operational impact or organizational dependent variables. Those are listed [here](https://docs.google.com/spreadsheets/d/1hHbPDnm5WspzGt6F67_Dw2GgLA1E0-NCAsIGeHJLK7s/edit#gid=0) *Note: Must have a GSA account to access.
-
+Note, a subset of controls were removed due to operational impact or organizational dependent variables. Those are listed [here](https://docs.google.com/spreadsheets/d/1hHbPDnm5WspzGt6F67_Dw2GgLA1E0-NCAsIGeHJLK7s/edit#gid=0) *Note: Must have a GSA account to access.*
 
 Dependencies
 ------------
@@ -31,7 +30,7 @@ Ansible > 2.4
 Example Playbook
 -------------------------
 
-```
+```yaml
 ---
 - name: Harden Server
   hosts: all
@@ -40,11 +39,19 @@ Example Playbook
   roles:
     - gsa_hardening
 ```
-How to test locally
---------------------------
-```
-ansible-playbook playbook.yml --connection=local
-```
+
+## Testing
+
+To test the role against a bare AWS AMI:
+
+1. Install [Packer](https://www.packer.io/).
+1. [Specify your AWS credentials as environment variables.](https://www.packer.io/docs/builders/amazon.html#automatic-lookup)
+1. Build an AMI using the role.
+
+    ```sh
+    cd test
+    packer build packer.json
+    ```
 
 License
 -------
