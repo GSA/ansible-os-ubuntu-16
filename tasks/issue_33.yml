@@ -1,0 +1,10 @@
+- name: "1.5.1 | Ensure core dumps are restricted"
+  sysctl:
+      name: fs.suid_dumpable
+      value: 0
+      state: present
+      reload: yes
+      sysctl_set: yes
+      ignoreerrors: yes
+  tags:
+      - id_1.5.1
