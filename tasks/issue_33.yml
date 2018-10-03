@@ -64,6 +64,7 @@
       line='GRUB_CMDLINE_LINUX="audit=1"'
       state=present
       create=yes
+  notify: [ 'Update GRUB' ]
   when: ubu16gsa_auditd_config == true
   tags:
       - id_4.1.3
