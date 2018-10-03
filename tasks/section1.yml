@@ -197,7 +197,6 @@
 - name: "1.6.2.1 | Ensure AppArmor is not disabled in bootloader configuration"
   lineinfile:
       dest: /etc/default/grub
-      regexp: "^GRUB_CMDLINE_LINUX="
       line: 'GRUB_CMDLINE_LINUX=apparmor="1 security=apparmor"'
       state: present
   when: ubu16gsa_config_apparmor == true
