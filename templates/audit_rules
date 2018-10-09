@@ -38,6 +38,7 @@
 -w /etc/apparmor/ -p wa -k MAC-policy
 -w /etc/apparmor.d/ -p wa -k MAC-policy
 
+
 # 4.1.8 Collect Login and Logout Events
 -w /var/log/faillog -p wa -k logins
 -w /var/log/lastlog -p wa -k logins
