@@ -167,13 +167,6 @@
   tags:
       - id_3.3.3
 
-- name: "3.4.1 | Ensure TCP Wrappers is installed"
-  apt:
-    name: tcpd
-    state: present
-  tags:
-      - id_3.4.1
-
 - name: "3.4.4 | Ensure permissions on /etc/hosts.allow are 644"
   file:
       dest: /etc/hosts.allow
@@ -230,14 +223,6 @@
       - id_3.5.4
 
 - name: "3.6 | Ensure firewalld is installed and started | CUSTOM"
-  apt:
-      name: firewalld
-      state: present
-  when: ubu16gsa_firewall == "firewalld"
-  tags:
-      - id_3.6
-
-- name: "3.6 | Ensure firewalld is installed and started | CUSTOM"
   service:
       name: firewalld
       state: stopped
@@ -245,14 +230,6 @@
   when: ubu16gsa_firewall == "firewalld"
   tags:
       - id_3.6
-
-- name: "3.6.1 | Ensure iptables is installed"
-  apt:
-      name: iptables
-      state: present
-  when: ubu16gsa_firewall == "iptables"
-  tags:
-      - id_3.6.1
 
 - name: "3.6.2 | Configuring ssh to not break connections"
   command: iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
