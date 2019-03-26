@@ -22,6 +22,18 @@ provisioner:
     converge: ${MOLECULE_PLAYBOOK:-playbook.yml}
 scenario:
   name: default
+  test_sequence:
+  - lint
+  - destroy
+  - dependency
+  - syntax
+  - create
+  - prepare
+  - converge
+  #- idempotence  # to fix
+  - verify
+  - cleanup
+  - destroy
 verifier:
   name: testinfra
   lint:
