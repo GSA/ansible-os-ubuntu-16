@@ -42,6 +42,14 @@ Example Playbook
 
 ## Testing
 
+### with Molecule
+```
+pip install pipenv
+sudo pipenv install
+pipenv run test
+```
+
+### with Packer
 To test the role against a bare AWS AMI:
 
 1. Install [Packer](https://www.packer.io/).

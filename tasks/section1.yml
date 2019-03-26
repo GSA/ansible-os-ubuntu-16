@@ -203,6 +203,7 @@
   when: ubu16gsa_config_apparmor == true
   tags:
     - id_1.6.2.1
+    - molecule-notest # to fix
 
 - name: "1.6.2.2 |  Ensure all AppArmor Profiles are enforcing"
   shell: for profile in /etc/apparmor.d/*; do aa-enforce $profile; done

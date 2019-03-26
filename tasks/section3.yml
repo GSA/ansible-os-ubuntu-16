@@ -156,6 +156,7 @@
   when: ubu16gsa_ipv6_configured == true
   tags:
       - id_3.3.2
+      - molecule-notest # to fix
 
 - name: "3.3.3 | Ensure IPv6 is disabled"
   lineinfile: >
