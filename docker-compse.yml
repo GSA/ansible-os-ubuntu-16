@@ -1,0 +1,7 @@
+ubuntu16:
+    build: .
+    container_name: ubuntu16
+    privileged: true
+    tty: true
+    volumes:
+      - /home/circleci/project:/home/circleci/project
