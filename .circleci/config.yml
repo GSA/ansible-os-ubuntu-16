@@ -10,7 +10,7 @@ jobs:
           command: sudo service apparmor teardown
       - run:
           name: Pull Docker Image
-          command: docker-compose pull ubuntu:16.04
+          command: docker-compose pull ubuntu:xenial
       - run:
           name: Set up remote container
           command: |
