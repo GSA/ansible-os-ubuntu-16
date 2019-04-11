@@ -63,12 +63,13 @@
   changed_when: False
   tags:
     - id_4.1.12
-
+#FIXME added ignore errors due to container compatibility
 - name: "4.2.1.1 Ensure rsyslog Service is enabled"
   systemd:
       name: rsyslog
       enabled: yes
       state: started
+  ignore_errors: yes
   when: ubu16gsa_logging == "rsyslog" and ubu16gsa_config_logging == true
   tags:
       - id_4.2.1.1
