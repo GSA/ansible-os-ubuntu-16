@@ -21,7 +21,7 @@
       name: auditd
       state: started
       enabled: yes
-  ignoreerrors: yes
+      ignoreerrors: yes
   when: ubu16gsa_auditd_config == true
   tags:
       - id_4.1.2
