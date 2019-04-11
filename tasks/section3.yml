@@ -150,7 +150,7 @@
       sysctl_set: yes
       state: present
       reload: yes
-      ignore_errors: yes
+      ignoreerrors: yes
   with_items:
       - { name: net.ipv6.conf.all.accept_redirects, value: 0 }
       - { name: net.ipv6.conf.default.accept_redirects, value: 0 }
