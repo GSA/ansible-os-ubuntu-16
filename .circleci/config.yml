@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Install Ansible in remote container
           command: |
-            docker-compose exec ubuntu16 yum -y install ansible
+            docker-compose exec ubuntu16 apt-get install -y ansible
       - run:
           name: Copy Ansible Code to Remote Container
           command: |
