@@ -29,7 +29,8 @@ jobs:
       - run:
           name: Install Missing Container Services
           command: |
-            docker-compose exec ubuntu16 apt-get install -y grub-efi 
+            docker-compose exec ubuntu16 apt-get install -y grub-efi
+            docker-compose exec ubuntu16 apt-get install -y rsyslog
             #docker-compose exec centos7 yum -y install openssh-server 
             #docker-compose exec centos7 systemctl enable sshd
             #docker-compose exec centos7 systemctl start  sshd
