@@ -5,3 +5,4 @@ ubuntu16:
     tty: true
     volumes:
       - /home/circleci/project:/home/circleci/project
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro

@@ -142,7 +142,7 @@
   when: ubu16gsa_ipv6_configured == true
   tags:
       - id_3.3.1
-
+#FIXME Enabled ignore_errors due to Container Issues
 - name: "3.3.2 | Ensure IPv6 redirects are not accepted"
   sysctl:
       name: '{{ item.name }}'
@@ -150,6 +150,7 @@
       sysctl_set: yes
       state: present
       reload: yes
+      ignoreerrors: yes
   with_items:
       - { name: net.ipv6.conf.all.accept_redirects, value: 0 }
       - { name: net.ipv6.conf.default.accept_redirects, value: 0 }

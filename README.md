@@ -40,18 +40,21 @@ Example Playbook
     - gsa_hardening
 ```
 
-## Testing
+How to test locally
+--------------------------
+```
+ansible-playbook playbook.yml --connection=local
+```
 
-To test the role against a bare AWS AMI:
+CircleCI Intergration
+--------------
+This repository has been updated to optionally utilize Continuous Intergration with CircleCI and tests the ansbile tasks against a privledged Ubuntu-16 Container.  A low number of tasks are incompatiable when ran against a container vs a vm or bare-metal and have ignore_errors turned on.
 
-1. Install [Packer](https://www.packer.io/).
-1. [Specify your AWS credentials as environment variables.](https://www.packer.io/docs/builders/amazon.html#automatic-lookup)
-1. Build an AMI using the role.
-
-    ```sh
-    cd test
-    packer build packer.json
-    ```
+##### Using CircleCI:
+* Fork this repository or create a branch
+* Sign up for an account and follow the getting started guide at https://circleci.com/docs/2.0/first-steps/#section=getting-started
+* Add the repository to your projects and click start building. https://circleci.com/docs/2.0/project-build/#section=getting-started
+* New Commits will trigger the CircleCI build and run the playbook.yml and the result will pass or fail.
 
 License
 -------
