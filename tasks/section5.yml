@@ -314,10 +314,15 @@
   tags:
     -  id_5.4.1.4
 
+#- name: "5.4.3 | Ensure default group for the root account is GID 0"
+  #command: usermod -g 0 root
+  #tags:
+      #- id_5.4.3
+
 - name: "5.4.3 | Ensure default group for the root account is GID 0"
-  command: usermod -g 0 root
-  tags:
-      - id_5.4.3
+  user:
+    name: root
+    group: root
 
 - name: "5.4.4 Set Default umask for Users"
   lineinfile:
