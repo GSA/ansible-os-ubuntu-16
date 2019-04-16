@@ -325,7 +325,6 @@
     create=yes
     dest=/etc/bashrc
     line="umask 027"
-  ignore_errors: true
   tags:
     - id_5.4.4
 
@@ -335,7 +334,6 @@
     create=yes
     dest=/etc/profile
     line="umask 027"
-  ignore_errors: true
   tags:
     - id_5.4.4
 

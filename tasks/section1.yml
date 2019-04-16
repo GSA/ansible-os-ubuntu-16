@@ -163,7 +163,6 @@
       state: present
       reload: yes
       sysctl_set: yes
-      ignoreerrors: yes
   tags:
       - id_1.5.1
 
@@ -174,7 +173,6 @@
       state: present
       reload: yes
       sysctl_set: yes
-      ignoreerrors: yes
   tags:
       - id_1.5.3
 
@@ -190,7 +188,6 @@
   register: result1_6_1_4
   changed_when: "result1_6_1_4.stdout"
   failed_when: "result1_6_1_4.stdout"
-  ignore_errors: yes
   tags:
     - id_1.6.1.4
 
