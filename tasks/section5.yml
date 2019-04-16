@@ -77,7 +77,7 @@
       group: root
       mode: 0600
       modification_time: "preserve"
-      access_time: "preserve
+      access_time: "preserve"
   tags:
       - id_5.1.8
 
