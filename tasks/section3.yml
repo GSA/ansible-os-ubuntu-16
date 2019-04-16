@@ -117,6 +117,7 @@
       reload: yes
   tags:
       - id_3.2.8
+      - no_test
 
 - name: "3.3.1 | Ensure IPv6 router advertisements are not accepted"
   sysctl:
