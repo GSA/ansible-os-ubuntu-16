@@ -34,6 +34,10 @@ jobs:
             docker-compose exec ubuntu16 service rsyslog start
             docker-compose exec ubuntu16 apt-get install -y openssh-server
       - run:
+          name: Test to be removed
+          command: |
+            docker-compose exec ubuntu16 cat /etc/default/grub
+      - run:
           name: Run playbook.yml in remote Docker container
           command: |
             docker-compose exec -T ubuntu16 cp -r /home/circleci/project/* /etc/ansible/roles
@@ -42,6 +46,10 @@ jobs:
           name: Run playbook.yml in remote Docker container
           command: |
             docker-compose exec -T ubuntu16 ansible-playbook -vv --skip-tags no_test --connection=local --inventory 127.0.0.1, /home/circleci/project/ansible-os-ubuntu-16/playbook.yml
+      - run:
+          name: Test to be removed
+          command: |
+            docker-compose exec ubuntu16 cat /etc/default/grub
       #FIXME Uncomment once tasks are all idempotent
       #- run:
           #name: Run playbook.yml again, checking to make sure it's idempotent
