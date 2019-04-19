@@ -48,7 +48,7 @@ ansible-playbook playbook.yml --connection=local
 
 CircleCI Intergration
 --------------
-This repository has been updated to optionally utilize Continuous Intergration with CircleCI and tests the ansbile tasks against a privledged Ubuntu-16 Container.  A low number of tasks are incompatiable when ran against a container vs a vm or bare-metal and have ignore_errors turned on.
+This repository has been updated to optionally utilize Continuous Intergration with CircleCI and tests the ansbile tasks against a privledged Ubuntu-16 Container.  A low number of tasks are incompatiable when ran against a container vs a vm or bare-metal and have been tagged with no_test for error handling purposes.
 
 ##### Using CircleCI:
 * Fork this repository or create a branch
