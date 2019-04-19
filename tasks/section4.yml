@@ -15,16 +15,16 @@
   when: ubu16gsa_auditd_config == true
   tags:
       - id_4.1.1.3
-#FIXME Added ignoreerrors due to Auditd not fully compatiable inside containers
+
 - name: "4.1.2 | Ensure auditd service is enabled"
   systemd:
       name: auditd
       state: started
       enabled: yes
-  ignore_errors: yes
   when: ubu16gsa_auditd_config == true
   tags:
       - id_4.1.2
+      - no_test
 
 - name: "4.1.3 | Ensure auditing for processes that start prior to auditd is enabled"
   lineinfile: >
@@ -63,16 +63,16 @@
   changed_when: False
   tags:
     - id_4.1.12
-#FIXME added ignore errors due to container compatibility
+
 - name: "4.2.1.1 Ensure rsyslog Service is enabled"
   systemd:
       name: rsyslog
       enabled: yes
       state: started
-  ignore_errors: yes
   when: ubu16gsa_logging == "rsyslog" and ubu16gsa_config_logging == true
   tags:
       - id_4.2.1.1
+      - no_test
 
 - name: "4.2.1.3 | Ensure rsyslog default file permissions configured"
   lineinfile:

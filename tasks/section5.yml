@@ -76,6 +76,8 @@
       owner: root
       group: root
       mode: 0600
+      modification_time: "preserve"
+      access_time: "preserve"
   tags:
       - id_5.1.8
 
@@ -93,6 +95,8 @@
       owner: root
       group: root
       mode: 0600
+      modification_time: "preserve"
+      access_time: "preserve"
   tags:
       - id_5.1.8
 
@@ -315,7 +319,9 @@
     -  id_5.4.1.4
 
 - name: "5.4.3 | Ensure default group for the root account is GID 0"
-  command: usermod -g 0 root
+  user:
+    name: root
+    group: root
   tags:
       - id_5.4.3
 
@@ -325,7 +331,6 @@
     create=yes
     dest=/etc/bashrc
     line="umask 027"
-  ignore_errors: true
   tags:
     - id_5.4.4
 
@@ -335,7 +340,6 @@
     create=yes
     dest=/etc/profile
     line="umask 027"
-  ignore_errors: true
   tags:
     - id_5.4.4
 

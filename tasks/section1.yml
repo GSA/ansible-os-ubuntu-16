@@ -163,7 +163,6 @@
       state: present
       reload: yes
       sysctl_set: yes
-      ignoreerrors: yes
   tags:
       - id_1.5.1
 
@@ -174,7 +173,6 @@
       state: present
       reload: yes
       sysctl_set: yes
-      ignoreerrors: yes
   tags:
       - id_1.5.3
 
@@ -190,14 +188,13 @@
   register: result1_6_1_4
   changed_when: "result1_6_1_4.stdout"
   failed_when: "result1_6_1_4.stdout"
-  ignore_errors: yes
   tags:
     - id_1.6.1.4
 
 - name: "1.6.2.1 | Ensure AppArmor is not disabled in bootloader configuration"
   lineinfile:
       dest: /etc/default/grub
-      regexp: "^GRUB_CMDLINE_LINUX="
+      regexp: 'GRUB_CMDLINE_LINUX=(""|apparmor="1 security=apparmor")'
       line: 'GRUB_CMDLINE_LINUX=apparmor="1 security=apparmor"'
       state: present
   when: ubu16gsa_config_apparmor == true
