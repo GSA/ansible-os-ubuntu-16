@@ -1,4 +1,4 @@
-Ubuntu 16 GSA Benchmark
+Ubuntu 16 GSA Benchmark [![CircleCI](https://circleci.com/gh/GSA/ansible-os-ubuntu-16.svg?style=shield)](https://circleci.com/gh/GSA/ansible-os-ubuntu-16)
 ====================
 
 This ansible content will configure Ubuntu 16 machine to be GSA compliant.
