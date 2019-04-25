@@ -76,10 +76,9 @@
       owner: root
       group: root
       mode: 0600
-      modification_time: "preserve"
-      access_time: "preserve"
   tags:
       - id_5.1.8
+      - no_test
 
 - name: "5.1.8 | Ensure at/cron is restricted to authorized users"
   file:
@@ -95,10 +94,9 @@
       owner: root
       group: root
       mode: 0600
-      modification_time: "preserve"
-      access_time: "preserve"
   tags:
       - id_5.1.8
+      - no_test
 
 - name: "5.2.1 | Ensure permissions on /etc/ssh/sshd_config are configured"
   file:
