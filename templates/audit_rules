@@ -62,6 +62,13 @@
 -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access
 -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access
 
+# 4.1.12 Ensure use of privileged commands is collected
+{% if audit_lines_for_find is defined %}
+{% for audit_command in audit_lines_for_find.stdout_lines %}
+{{ audit_command }}
+{% endfor %}
+{% endif %}
+
 # 4.1.13 Collect Successful File System Mounts
 -a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts
 -a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts
