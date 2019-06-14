@@ -213,7 +213,7 @@
       state: present
       dest: /etc/ssh/sshd_config
       regexp: '^ClientAliveInterval'
-      line: 'ClientAliveInterval 900'
+      line: 'ClientAliveInterval 300'
   tags:
       - id_5.2.13
 
@@ -257,6 +257,10 @@
       line: '{{ item.key }} = {{ item.value }}'
   with_items:
       - { key: 'minlen',  value: '16' }
+      - { key: 'dcredit',  value: '-1' }
+      - { key: 'ucredit',  value: '-1' }
+      - { key: 'ocredit',  value: '-1' }
+      - { key: 'lcredit',  value: '-1' }
       - { key: 'retry',  value: '3' }
   tags:
       - id_5.3.1
@@ -288,12 +292,12 @@
   tags:
       - id_5.4.1.1
 
-- name: "5.4.1.2 | Ensure minimum days between password changes is 0 or more"
+- name: "5.4.1.2 | Ensure minimum days between password changes is 7 or more"
   lineinfile:
       state: present
       dest: /etc/login.defs
       regexp: '^PASS_MIN_DAYS'
-      line: 'PASS_MIN_DAYS 0'
+      line: 'PASS_MIN_DAYS 7'
   tags:
       - id_5.4.1.2
 
