@@ -159,7 +159,7 @@
     - { regex: 'ipv6.disable=', context: 'ipv6.disable=1' }
   notify: [ 'update grub config' ]
   when: ubu16gsa_ipv6_disable == true
-  tags:
+  tags: 
       - id_3.3.3
 
 - name: "3.4.1 | Ensure TCP Wrappers is installed"
