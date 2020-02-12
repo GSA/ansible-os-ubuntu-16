@@ -149,11 +149,15 @@
       - no_test
 
 - name: "3.3.3 | Ensure IPv6 is disabled"
-  lineinfile: >
-      dest=/etc/default/grub
-      line='GRUB_CMDLINE_LINUX="ipv6.disable=1"'
-      state=present
-      create=yes
+  lineinfile:
+    dest: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX="(?!.* {{ item.regex }})(.*)"'
+    line: 'GRUB_CMDLINE_LINUX="\1 {{ item.context }}"'
+    state: present
+    backrefs: yes
+  with_items:
+    - { regex: 'ipv6.disable=', context: 'ipv6.disable=1' }
+  notify: [ 'update-grub' ]
   when: ubu16gsa_ipv6_disable == true
   tags:
       - id_3.3.3
