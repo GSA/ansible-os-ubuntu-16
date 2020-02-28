@@ -157,7 +157,7 @@
     backrefs: yes
   with_items:
     - { regex: 'ipv6.disable=', context: 'ipv6.disable=1' }
-  notify: [ 'update grub config' ]
+  notify: [ 'update-grub' ]
   when: ubu16gsa_ipv6_disable == true
   tags: 
       - id_3.3.3
