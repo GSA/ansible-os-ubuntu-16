@@ -1,0 +1,5 @@
+# Use update-grub to regenerate grub.cfg
+- name: update-grub
+  command: update-grub
+  failed_when: ('error' in grub_register_update.stderr)
+  register: grub_register_update
