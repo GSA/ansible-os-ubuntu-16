@@ -40,5 +40,15 @@ jobs:
             docker-compose exec -T ubuntu16 ansible-playbook -vv --skip-tags no_test --connection=local --inventory 127.0.0.1, /home/circleci/project/ansible-os-ubuntu-16/playbook.yml
       - run:
           name: Run playbook.yml again, checking to make sure it's idempotent
-          command: >
-            docker-compose exec -T ubuntu16 ansible-playbook --skip-tags no_test --connection=local --inventory 127.0.0.1, /home/circleci/project/ansible-os-ubuntu-16/playbook.yml | grep 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+          command: |
+            export IDEMPOTENT="true"
+            docker-compose exec -T ubuntu16 ansible-playbook --skip-tags no_test --connection=local --inventory 127.0.0.1, /home/circleci/project/ansible-os-ubuntu-16/playbook.yml | tee ./ansible_out.log | grep 'changed=0.*failed=0' || IDEMPOTENT="false"
+            echo "-----Ansible Log From Idempotentency Check-----"
+            cat ansible_out.log 
+            if [ "$IDEMPOTENT" = "false" ]
+            then 
+              echo 'Idempotence test: fail' && exit 1
+            else
+              echo 'Idempotence test: pass'
+            fi
+
