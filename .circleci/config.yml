@@ -41,9 +41,10 @@ jobs:
       - run:
           name: Run playbook.yml again, checking to make sure it's idempotent
           command: |
+            echo "Test1"
             docker-compose exec -T ubuntu16 ansible-playbook --skip-tags no_test --connection=local --inventory 127.0.0.1, /home/circleci/project/ansible-os-ubuntu-16/playbook.yml | tee ./ansible_out.log | grep 'changed=0.*failed=0' 
+            echo "Test2"
             export LAST_ERR=$?
-            echo $?
             echo "-----Ansible Log From Idempotentency Check-----"
             cat ansible_out.log 
             if [ $LAST_ERR -ne 0 ]
