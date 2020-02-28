@@ -46,7 +46,7 @@ jobs:
             echo $?
             echo "-----Ansible Log From Idempotentency Check-----"
             cat ansible_out.log 
-            if [ $LAST_ERR && -ne 0 ]
+            if [ $LAST_ERR -ne 0 ]
             then 
               echo 'Idempotence test: fail' && exit 1
             else
